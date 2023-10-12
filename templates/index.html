@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>도서 관리 시스템 - 관리자</title>
+    <style>
+        body {
+            text-align: center;
+            /* 가운데 정렬을 위한 전체 페이지 정렬 */
+        }
+
+        h1 {
+            text-align: center;
+            /* 가운데 정렬을 위한 제목 정렬 */
+        }
+
+        form {
+            display: inline-block;
+            /* 폼 요소를 인라인 블록으로 표시하여 가운데 정렬 */
+            text-align: left;
+            /* 폼 내용을 왼쪽 정렬 */
+        }
+
+        ul {
+            list-style-type: none;
+            /* 목록 기호 제거 */
+            padding: 0;
+            /* 목록 내부 패딩 제거 */
+        }
+
+        li {
+            text-align: left;
+            /* 목록 항목 내용 왼쪽 정렬 */
+            text-align: center;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>도서 관리 시스템 - 관리자</h1>
+
+    <h2>멤버 추가</h2>
+    <form method="POST" action="/add_member">
+        <input type="text" name="member_name" placeholder="멤버 이름">
+        <input type="text" name="phone_number" placeholder="전화번호">
+        <button type="submit">멤버 추가</button>
+    </form>
+
+    <h2>멤버 삭제</h2>
+    <form method="POST" action="/delete_member">
+        <input type="text" name="member_name" placeholder="멤버 이름">
+        <button type="submit">멤버 삭제</button>
+    </form>
+
+    <h2>책 추가</h2>
+    <form method="POST" action="/add_book">
+        <input type="text" name="book_title" placeholder="책 제목">
+        <button type="submit">책 추가</button>
+    </form>
+
+    <h2>책 삭제</h2>
+    <form method="POST" action="/delete_book">
+        <input type="text" name="book_title" placeholder="책 제목">
+        <button type="submit">책 삭제</button>
+    </form>
+
+    <h2>책 대출</h2>
+    <form method="POST" action="/loan_book">
+        <input type="text" name="loan_member" placeholder="멤버 이름">
+        <input type="text" name="loan_book_title" placeholder="책 제목">
+        <button type="submit">책 대출</button>
+    </form>
+
+    <h2>책 반납</h2>
+    <form method="POST" action="/return_book">
+        <input type="text" name="return_member" placeholder="멤버 이름">
+        <input type="text" name="return_book_title" placeholder="책 제목">
+        <button type="submit">책 반납</button>
+    </form>
+
+    <h2>멤버 정보</h2>
+    <ul>
+        {% for member, phone in members.items() %}
+        <li>{{ member }} (전화번호: {{ phone }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>책 상태 정보</h2>
+    <ul>
+        {% for book, status in books.items() %}
+        <li>{{ book }} (상태: {{ status }})</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
